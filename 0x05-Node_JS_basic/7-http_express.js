@@ -33,14 +33,14 @@ async function countStudents(path) {
 
 // Route for the root path
 app.get('/', (req, res) => {
-  res.send('Hello ALX!');
+  res.send('Hello Holberton School!');
 });
 
 // Route for the /students path
 app.get('/students', async (req, res) => {
   const databasePath = process.argv[2];
   if (!databasePath) {
-    res.status(500).send('Database file not provided');
+    res.status(500).send('Cannot load the database');
     return;
   }
 
@@ -48,7 +48,7 @@ app.get('/students', async (req, res) => {
     const studentData = await countStudents(databasePath);
     res.send(`This is the list of our students\n${studentData}`);
   } catch (error) {
-    res.status(500).send(error.message);
+    res.status(500).send(`This is the list of our students\n${error.message}`);
   }
 });
 
